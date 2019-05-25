@@ -2,6 +2,31 @@
 <html>
   <head>
   <style>
+	  body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+#main{
+}
+.color-header {
+  padding: 8px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.base-color-container {
+}
+.color-container {
+  display: flex;
+  flex-direction: row;
+  overflow:auto;
+}
+.box {
+  flex: 1 1 0%;
+}
+.text {
+  /*   font-size:1.5em; */
+  /*   text-transform:uppercase; */
+}
+
+	  
   //LESS vairables
 
 //Grey
@@ -676,232 +701,38 @@ section{
           </ul>
         </div>
       </section>
-      <section>
-        <h2 class="glh2">Buttons</h2>
-        <div class="buttons">
-          <ul class="btn_group clearfix">
-            <li>
-              <p><button class="btn btn-lg btn-default"><span class="btn-text">Large Button</span></button></p>
-              <p><button class="btn btn-default"><span class="btn-text">Default Button</span></button></p>
-              <p><button class="btn btn-sm btn-default"><span class="btn-text">Small Button</span></button></p>
-              <p><button class="btn btn-xs btn-default"><span class="btn-text">Extra-small Button</span></button></p>
-              <p><button class="btn btn-default disabled"><span class="btn-text">Disabled</span></button></p>
-            </li>
-            <li class="btngrp_subtitle"><p>Primary button</p></li>
-            <li>
-              <p><button class="btn btn-lg btn-primary"><span class="btn-text">Large Button</span></button></p>
-              <p><button class="btn btn-primary"><span class="btn-text">Default Button</span></button></p>
-              <p><button class="btn btn-sm btn-primary"><span class="btn-text">Small Button</span></button></p>
-              <p><button class="btn btn-xs btn-primary"><span class="btn-text">Extra-small Button</span></button></p>
-              <p><button class="btn btn-primary disabled"><span class="btn-text">Disabled</span></button></p>
-            </li>
-            <li>
-              <p><button class="btn btn-lg btn-outline-primary"><span class="btn-text">Large Button</span></button></p>
-              <p><button class="btn btn-outline-primary"><span class="btn-text">Default Button</span></button></p>
-              <p><button class="btn btn-sm btn-outline-primary"><span class="btn-text">Small Button</span></button></p>
-              <p><button class="btn btn-xs btn-outline-primary"><span class="btn-text">Extra-small Button</span></button></p>
-              <p><button class="btn btn-outline-primary disabled"><span class="btn-text">Disabled</span></button></p>
-            </li>
-            <li class="btngrp_subtitle"><p>Secondary button</p></li>
-            <li>
-              <p><button class="btn btn-lg btn-info"><span class="btn-text">Large Button</span></button></p>
-              <p><button class="btn btn-info"><span class="btn-text">Default Button</span></button></p>
-              <p><button class="btn btn-sm btn-info"><span class="btn-text">Small Button</span></button></p>
-              <p><button class="btn btn-xs btn-info"><span class="btn-text">Extra-small Button</span></button></p>
-              <p><button class="btn btn-info disabled"><span class="btn-text">Disabled</span></button></p>
-            </li>
-            <li>
-              <p><button class="btn btn-lg btn-outline-info"><span class="btn-text">Large Button</span></button></p>
-              <p><button class="btn btn-outline-info"><span class="btn-text">Default Button</span></button></p>
-              <p><button class="btn btn-sm btn-outline-info"><span class="btn-text">Small Button</span></button></p>
-              <p><button class="btn btn-xs btn-outline-info"><span class="btn-text">Extra-small Button</span></button></p>
-              <p><button class="btn btn-outline-info disabled"><span class="btn-text">Disabled</span></button></p>
-            </li>
-            <li class="btngrp_subtitle"><p>Success button</p></li>
-            <li>
-              <p><button class="btn btn-lg btn-success"><span class="btn-text">Large Button</span></button></p>
-              <p><button class="btn btn-success"><span class="btn-text">Default Button</span></button></p>
-              <p><button class="btn btn-sm btn-success"><span class="btn-text">Small Button</span></button></p>
-              <p><button class="btn btn-xs btn-success"><span class="btn-text">Extra-small Button</span></button></p>
-              <p><button class="btn btn-success disabled"><span class="btn-text">Disabled</span></button></p>
-            </li>
-            <li>
-              <p><button class="btn btn-lg btn-outline-success"><span class="btn-text">Large Button</span></button></p>
-              <p><button class="btn btn-outline-success"><span class="btn-text">Default Button</span></button></p>
-              <p><button class="btn btn-sm btn-outline-success"><span class="btn-text">Small Button</span></button></p>
-              <p><button class="btn btn-xs btn-outline-success"><span class="btn-text">Extra-small Button</span></button></p>
-              <p><button class="btn btn-outline-success disabled"><span class="btn-text">Disabled</span></button></p>
-            </li>
-            <li class="btngrp_subtitle"><p>Warning button</p></li>
-            <li>
-              <p><button class="btn btn-lg btn-warning"><span class="btn-text">Large Button</span></button></p>
-              <p><button class="btn btn-warning"><span class="btn-text">Default Button</span></button></p>
-              <p><button class="btn btn-sm btn-warning"><span class="btn-text">Small Button</span></button></p>
-              <p><button class="btn btn-xs btn-warning"><span class="btn-text">Extra-small Button</span></button></p>
-              <p><button class="btn btn-warning disabled"><span class="btn-text">Disabled</span></button></p>
-            </li>
-            <li>
-              <p><button class="btn btn-lg btn-outline-warning"><span class="btn-text">Large Button</span></button></p>
-              <p><button class="btn btn-outline-warning"><span class="btn-text">Default Button</span></button></p>
-              <p><button class="btn btn-sm btn-outline-warning"><span class="btn-text">Small Button</span></button></p>
-              <p><button class="btn btn-xs btn-outline-warning"><span class="btn-text">Extra-small Button</span></button></p>
-              <p><button class="btn btn-outline-warning disabled"><span class="btn-text">Disabled</span></button></p>
-            </li>
-            <li class="btngrp_subtitle"><p>Danger button</p></li>
-            <li>
-              <p><button class="btn btn-lg btn-danger"><span class="btn-text">Large Button</span></button></p>
-              <p><button class="btn btn-danger"><span class="btn-text">Default Button</span></button></p>
-              <p><button class="btn btn-sm btn-danger"><span class="btn-text">Small Button</span></button></p>
-              <p><button class="btn btn-xs btn-danger"><span class="btn-text">Extra-small Button</span></button></p>
-              <p><button class="btn btn-danger disabled"><span class="btn-text">Disabled</span></button></p>
-            </li>
-            <li>
-              <p><button class="btn btn-lg btn-outline-danger"><span class="btn-text">Large Button</span></button></p>
-              <p><button class="btn btn-outline-danger"><span class="btn-text">Default Button</span></button></p>
-              <p><button class="btn btn-sm btn-outline-danger"><span class="btn-text">Small Button</span></button></p>
-              <p><button class="btn btn-xs btn-outline-danger"><span class="btn-text">Extra-small Button</span></button></p>
-              <p><button class="btn btn-outline-danger disabled"><span class="btn-text">Disabled</span></button></p>
-            </li>
-          </ul>
-          <section>
-            <h3 class="glh3">circle</h3>
-            <ul class="btn_group clearfix">
-              <li>
-                <p><button class="btn btn-circle btn-lg btn-default"><span class="btn-text">Large Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-default"><span class="btn-text">Default Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-sm btn-default"><span class="btn-text">Small Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-xs btn-default"><span class="btn-text">Extra-small Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-default disabled"><span class="btn-text">Disabled</span><span class="btn-ripple"></span></button></p>
-              </li>
-              <li>
-                <p><button class="btn btn-circle btn-lg btn-primary"><span class="btn-text">Large Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-primary"><span class="btn-text">Default Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-sm btn-primary"><span class="btn-text">Small Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-xs btn-primary"><span class="btn-text">Extra-small Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-primary disabled"><span class="btn-text">Disabled</span><span class="btn-ripple"></span></button></p>
-              </li>
-              <li>
-                <p><button class="btn btn-circle btn-lg btn-info"><span class="btn-text">Large Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-info"><span class="btn-text">Default Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-sm btn-info"><span class="btn-text">Small Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-xs btn-info"><span class="btn-text">Extra-small Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-info disabled"><span class="btn-text">Disabled</span><span class="btn-ripple"></span></button></p>
-              </li>
-              <li>
-                <p><button class="btn btn-circle btn-lg btn-success"><span class="btn-text">Large Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-success"><span class="btn-text">Default Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-sm btn-success"><span class="btn-text">Small Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-xs btn-success"><span class="btn-text">Extra-small Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-success disabled"><span class="btn-text">Disabled</span><span class="btn-ripple"></span></button></p>
-              </li>
-              <li>
-                <p><button class="btn btn-circle btn-lg btn-warning"><span class="btn-text">Large Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-warning"><span class="btn-text">Default Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-sm btn-warning"><span class="btn-text">Small Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-xs btn-warning"><span class="btn-text">Extra-small Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-warning disabled"><span class="btn-text">Disabled</span><span class="btn-ripple"></span></button></p>
-              </li>
-              <li>
-                <p><button class="btn btn-circle btn-lg btn-danger"><span class="btn-text">Large Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-danger"><span class="btn-text">Default Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-sm btn-danger"><span class="btn-text">Small Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-xs btn-danger"><span class="btn-text">Extra-small Button</span><span class="btn-ripple"></span></button></p>
-                <p><button class="btn btn-circle btn-danger disabled"><span class="btn-text">Disabled</span><span class="btn-ripple"></span></button></p>
-              </li>
-            </ul>
-          </section>
+      <div id="main" class='px-3 font-sans'>
+  <div class="base-color-container relative my-8 overflow-hidden rounded shadow-md1">
+    <div class="color-header relative shadow bg-grey text-black px-3 py-4 md:py-1 text-sm font-semibold flex" style="color:#ffffff">
+      <div class="uppercase">Primary Secondry</div>
+      <div class="flex justify-between">
+        <span class="font-normal opacity-75 uppercase mx-2"></span>
+      </div>
 
-          <section>
-            <h3 class="glh3">gradient</h3>
-            <ul class="btn_group grd clearfix">
-              <li>
-                <p>
-                  <button class="btn btn-grad btn-default">
-                    <span class="btn-text">Gradient Button</span>
-                    <span class="btn-ripple"></span>
-                  </button>
-                </p>
-                <p>
-                  <button class="btn btn-grad btn-circle btn-default">
-                    <span class="btn-text">Gradient Button</span>
-                    <span class="btn-ripple"></span>
-                  </button>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <button class="btn btn-grad btn-primary">
-                    <span class="btn-text">Gradient Button</span>
-                    <span class="btn-ripple"></span>
-                  </button>
-                </p>
-                <p>
-                  <button class="btn btn-grad btn-circle btn-primary">
-                    <span class="btn-text">Gradient Button</span>
-                    <span class="btn-ripple"></span>
-                  </button>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <button class="btn btn-grad btn-info">
-                    <span class="btn-text">Gradient Button</span>
-                    <span class="btn-ripple"></span>
-                  </button>
-                </p>
-                <p>
-                  <button class="btn btn-grad btn-circle btn-info">
-                    <span class="btn-text">Gradient Button</span>
-                    <span class="btn-ripple"></span>
-                  </button>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <button class="btn btn-grad btn-success">
-                    <span class="btn-text">Gradient Button</span>
-                    <span class="btn-ripple"></span>
-                  </button>
-                </p>
-                <p>
-                  <button class="btn btn-grad btn-circle btn-success">
-                    <span class="btn-text">Gradient Button</span>
-                    <span class="btn-ripple"></span>
-                  </button>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <button class="btn btn-grad btn-warning">
-                    <span class="btn-text">Gradient Button</span>
-                    <span class="btn-ripple"></span>
-                  </button>
-                </p>
-                <p>
-                  <button class="btn btn-grad btn-circle btn-warning">
-                    <span class="btn-text">Gradient Button</span>
-                    <span class="btn-ripple"></span>
-                  </button>
-                </p>
-              </li>
-              <li>
-                <p>
-                  <button class="btn btn-grad btn-danger">
-                    <span class="btn-text">Gradient Button</span>
-                    <span class="btn-ripple"></span>
-                  </button>
-                </p>
-                <p>
-                  <button class="btn btn-grad btn-circle btn-danger">
-                    <span class="btn-text">Gradient Button</span>
-                    <span class="btn-ripple"></span>
-                  </button>
-                </p>
-              </li>
-            </ul>
-          </section>
-        </div>
-      </section>
+    </div>
+    <div class="color-container">
+      <div class="text box px-3 py-4 text-sm flex-1 font-semibold leading-tight" style="background-color:#007DBA;color:#ffffff">
+        <div class="mb-2">Primary-blue</div>
+        <div class="font-normal uppercase opacity-75">#007DBA</div>
+      </div>
+       <div class="text box px-3 py-4 text-sm flex-1 font-semibold leading-tight" style="background-color:#FEDB00;color:#000">
+        <div class="mb-2">Primary-blue</div>
+        <div class="font-normal uppercase opacity-75">#FEDB00</div>
+      </div>
+    
+     <div class="text box px-3 py-4 text-sm flex-1 font-semibold leading-tight" style="background-color:#FFFFFF;color:#000">
+        <div class="mb-2">White</div>
+        <div class="font-normal uppercase opacity-75">#FFFFFF</div>
+      </div>
+    
+     <div class="text box px-3 py-4 text-sm flex-1 font-semibold leading-tight" style="background-color:#000000;color:#FFFFFF">
+        <div class="mb-2">White</div>
+        <div class="font-normal uppercase opacity-75">#000000</div>
+      </div>
+    </div>
+  </div>
+  <div id='sub'></div>
+</div>
     </div>
   </body>
 </html>
