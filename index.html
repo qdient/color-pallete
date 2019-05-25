@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style>
+  //LESS vairables
+
+//Grey
+@gray-base:#1b2028;
+@gray:					 lighten(@gray-base, 53%);
+@gray-light:             lighten(@gray-base, 70%);
+@gray-lighter:           lighten(@gray-base, 80%);
+@gray-lightest:          lighten(@gray-base, 83%);
+@gray-dark:              lighten(@gray-base, 26%);
+@gray-darker:            lighten(@gray-base, 10%);
+@gray-overlay:           overlay(@gray-light,lighten(@gray-base, 60%));
+
+// Grayscales
+@gray-900:@gray-base;
+@gray-800:lighten(@gray-base, 10%);
+@gray-700:lighten(@gray-base, 20%);
+@gray-600:lighten(@gray-base, 30%);
+@gray-500:lighten(@gray-base, 40%);
+@gray-400:lighten(@gray-base, 50%);
+@gray-300:lighten(@gray-base, 60%);
+@gray-200:lighten(@gray-base, 70%);
+@gray-100:lighten(@gray-base, 80%);
+
+
+//Primary
+@primary:#0080FF;
+@primary-light: lighten(@primary, 10%);
+@primary-lighter: lighten(@primary, 35%);
+@primary-lightest: lighten(@primary, 45%);
+@primary-dark: darken(@primary, 10%);
+@primary-darker: darken(@primary, 18%);
+@primary-overlay:overlay(@primary,lighten(@gray-base, 74%));
+
+//secondary
+@secondary:#2E5ACF;
+@secondary-light: lighten(@secondary, 10%);
+@secondary-lighter: lighten(@secondary, 35%);
+@secondary-lightest: lighten(@secondary, 45%);
+@secondary-dark: darken(@secondary, 10%);
+@secondary-darker: darken(@secondary, 18%);
+@secondary-overlay:overlay(@secondary,lighten(@gray-base, 74%));
+
+//Info
+@info:#3596B9;
+@info-light: lighten(@info, 10%);
+@info-lighter: lighten(@info, 35%);
+@info-lightest: lighten(@info, 45%);
+@info-dark: darken(@info, 10%);
+@info-darker: darken(@info, 18%);
+@info-overlay:overlay(@info,lighten(@gray-base, 74%));
+
+//Success
+@success:#2EC16C;
+@success-light: lighten(@success, 10%);
+@success-lighter: lighten(@success, 35%);
+@success-lightest: lighten(@success, 45%);
+@success-dark: darken(@success, 10%);
+@success-darker: darken(@success, 18%);
+@success-overlay:overlay(@success,lighten(@gray-base, 74%));
+
+//Warning
+@warning:#FFA400;
+@warning-light: lighten(@warning, 10%);
+@warning-lighter: lighten(@warning, 35%);
+@warning-lightest: lighten(@warning, 45%);
+@warning-dark: darken(@warning, 10%);
+@warning-darker: darken(@warning, 18%);
+@warning-overlay:overlay(@warning,lighten(@gray-base, 74%));
+
+//Danger
+@danger:#CD353B;
+@danger-light: lighten(@danger, 10%);
+@danger-lighter: lighten(@danger, 35%);
+@danger-lightest: lighten(@danger, 45%);
+@danger-dark: darken(@danger, 10%);
+@danger-darker: darken(@danger, 18%);
+@danger-overlay:overlay(@danger,lighten(@gray-base, 74%));
+
+//Additional colors
+@adcolor1:#6610f2;
+@adcolor1-light: lighten(@adcolor1, 10%);
+@adcolor1-lighter: lighten(@adcolor1, 35%);
+@adcolor1-lightest: lighten(@adcolor1, 45%);
+@adcolor1-dark: darken(@adcolor1, 10%);
+@adcolor1-darker: darken(@adcolor1, 15%);
+@adcolor1-overlay:overlay(@adcolor1,lighten(@gray-base, 74%));
+
+@adcolor2:#e4207b;
+@adcolor2-light: lighten(@adcolor2, 10%);
+@adcolor2-lighter: lighten(@adcolor2, 35%);
+@adcolor2-lightest: lighten(@adcolor2, 45%);
+@adcolor2-dark: darken(@adcolor2, 10%);
+@adcolor2-darker: darken(@adcolor2, 18%);
+@adcolor2-overlay:overlay(@adcolor2,lighten(@gray-base, 74%));
+
+@adcolor3:#17a2b8;
+@adcolor3-light: lighten(@adcolor3, 10%);
+@adcolor3-lighter: lighten(@adcolor3, 35%);
+@adcolor3-lightest: lighten(@adcolor3, 45%);
+@adcolor3-dark: darken(@adcolor3, 10%);
+@adcolor3-darker: darken(@adcolor3, 18%);
+@adcolor3-overlay:overlay(@adcolor3,lighten(@gray-base, 74%));
+
+
+@base-fontfamily: "Google Sans", Roboto, Arial;
+
+//mixins
+.bdr(@radius) {
+	border-radius: @radius;
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+}
+
+.grd(@fromcolor; @tocolor; @angel:-45deg){
+	background-image: -webkit-linear-gradient(@angel, @fromcolor, @tocolor);
+	background-image: -moz-linear-gradient(@angel, @fromcolor, @tocolor);
+	background-image: -ms-linear-gradient(@angel, @fromcolor, @tocolor);
+	background-image: -o-linear-gradient(@angel, @fromcolor,@tocolor);
+	background-image: linear-gradient(@angel, @fromcolor, @tocolor);
+	filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=@fromcolor, endColorstr=@tocolor);
+}
+
+.typocal(@font-size){
+	@line-height: round(@font-size + @font-size/2, 1);
+	font-size: @font-size;
+	line-height: @line-height;
+}
+
+.generate_scalecolor_palette(@colorkeyname;){
+	//colorscale variables: 100-900
+	@100: "@{colorkeyname}-100";
+	@200: "@{colorkeyname}-200";
+	@300: "@{colorkeyname}-300";
+	@400: "@{colorkeyname}-400";
+	@500: "@{colorkeyname}-500";
+	@600: "@{colorkeyname}-600";
+	@700: "@{colorkeyname}-700";
+	@800: "@{colorkeyname}-800";
+	@900: "@{colorkeyname}-900";
+	
+
+	// colorscale palette
+	.@{colorkeyname}_scale_palette{
+		._100{background-color: @@100;color:@gray-base;}
+		._200{background-color:@@200;}
+		._300{background-color: @@300;}
+		._400{background-color:@@400;}
+		._500{background-color:@@500;}
+		._600{background-color:@@600;}
+		._700{background-color:@@700;}
+		._800{background-color:@@800;}
+		._900{background-color:@@900;}
+	}
+}
+
+.generate_el (@colorkeyname;){
+	//color tone variables used to generate color palette
+	@light: "@{colorkeyname}-light";
+	@lighter: "@{colorkeyname}-lighter";
+	@lightest: "@{colorkeyname}-lightest";
+	@dark: "@{colorkeyname}-dark";
+	@darker: "@{colorkeyname}-darker";
+	@overlay: "@{colorkeyname}-overlay";
+	@grad: "@{colorkeyname}-grad";
+
+	// color palette
+	.@{colorkeyname}-palette{
+		.root{background-color: @@colorkeyname;}
+		.light{background-color:@@light;}
+		.lighter{background-color:@@lighter;}
+		.lightest{background-color:@@lightest; color:@@light}
+		.dark{background-color:@@dark;}
+		.darker{background-color:@@darker;}
+		.overlay{background-color:@@overlay;}
+		.grad {
+			.grd(@fromcolor:@@colorkeyname;@tocolor:@@overlay);
+		}
+	}
+	.btn-@{colorkeyname}{
+		background-color: @@colorkeyname;
+		border-color:  @@colorkeyname;
+		&:hover{
+			color: #fff;
+			background-color:@@light;
+			border-color:@@light;
+			box-shadow: 0px 4px 6px 0px fade(@@light, 30%);
+		}
+		&:active, &:focus{
+			background-color:@@darker;
+			color: @@lighter;
+			border-color:@@darker;
+			box-shadow:inset 0px 0px 2px 0px fade(#000, 30%);
+		}
+		&.btn-grad{
+			&:hover{
+				.grd(@fromcolor:@@colorkeyname;@tocolor:@@overlay;);
+			}
+		}
+		&.disabled, &:disabled{
+			// background-color: @@colorkeyname;
+			// border-color: @@colorkeyname;
+			box-shadow:none;
+			pointer-events:none;
+			opacity: .3;
+		}
+	}
+
+	.btn-outline-@{colorkeyname}{
+		border-color: @@colorkeyname;
+		color: @@colorkeyname;
+		&:hover,&:active, &:focus{
+			border-color:@@light;
+			color:@@colorkeyname;
+			background-color:fade(@@light, 20%);
+		}
+		&:active, &:focus{box-shadow:inset 0px 0px 2px 0px fade(#000, 30%);}
+	}
+}
+
+//buttons
+.btn{
+	display:inline-block;
+	margin:0 8px 0 0;
+	padding-left:12px;
+	padding-right: 12px;
+	color:#FFF;
+	text-decoration:none;
+	white-space: nowrap;
+	user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	touch-action: manipulation;
+	cursor: pointer;
+	position: relative;
+	transition: all ease 0.3s;
+	text-align: center;
+	vertical-align: middle;
+	font-family: inherit;
+	height: 40px;
+	line-height: $height - 2;
+	font-size:14px;
+	outline: none;
+	border-width:1px;
+	border-style: solid;
+	overflow: visible; // fix ie
+	.bdr(6px);
+	&:hover{
+		text-decoration:none;
+		color:#FFF;
+	}
+	&:focus,&:active{
+		transform:translateY(0px);
+	}
+	&.disabled, &:disabled{
+		box-shadow:none;
+		pointer-events:none;
+		opacity: .3;
+	}
+	.btn-ripple{display: none;}
+
+	// button sizes
+	&.btn-lg{
+		height: 48px;
+		line-height: $height - 2;
+		font-size: 16px;
+		.bdr(6px);
+	}
+	&.btn-sm{
+		height: 32px;
+		line-height: $height - 2;
+		font-size: 12px;
+		.bdr(6px);
+	}
+	&.btn-xs{
+		font-size: 12px;
+		padding-left: 8px;
+		padding-right: 8px;
+		line-height: $height - 2;
+		height: 24px;
+		.bdr(4px);
+	}
+
+	//button shape
+	&.btn-circle{
+		.bdr(48px);
+	}
+
+	//button Gradient
+	&.btn-grad{
+		position: relative;
+		overflow: hidden;
+		border:none;
+	}
+}
+
+.btn-default{
+	background-color: #FFF;
+	border-color: @gray-dark;
+	color:@gray-darker;
+	&:hover{
+		border-color:@primary-light;
+		color:@primary-dark;
+		box-shadow: 0px 4px 12px 0px fade(@primary-light, 30%); 
+	}
+	&:focus,&:active{
+		background-color:@primary-lightest;
+		color: @primary-dark;
+		border-color: @primary-lighter;
+		box-shadow: 0px 2px 8px 0px fade(@primary-lighter, 50%);
+	}
+	&.disable{
+		box-shadow:none;
+		pointer-events:none;
+		background-color: @gray-lighter;
+		border: none;
+		opacity: .3;
+		color: @gray-base;
+	}
+	&.btn-grad{
+		background-color: @gray-darker;
+		color: #fff;
+		&:hover{
+			box-shadow: 0px 6px 12px 0px fade(@gray-dark, 50%);
+			.grd(@fromcolor:@gray-darker;@tocolor:@gray-dark);
+		}
+	}
+}
+ 
+// CSS page structure
+*{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.clearfix {
+	display: block;
+	zoom: 1;
+
+	&:after {
+		content: " ";
+		display: block;
+		font-size: 0;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+}
+html, body, button, form, ul, li, ol{
+	font-family: @base-fontfamily;
+	letter-spacing: 0.5px;
+	padding:0;
+	margin:0;
+	outline: none;
+}
+body{
+	.typocal(14px);
+	letter-spacing: 0.5px;
+	background:#fff;
+	color: @gray-darker;
+}
+a{
+	color: @primary;
+	text-decoration: none;
+	outline: none;
+	&:hover{color:@primary-dark;}
+	&:active,&:focus{
+		color: @primary-darker;
+	}
+}
+
+ul, li{
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+.container{
+	padding:24px;
+	background-color:#FFF;
+	margin:0 auto;
+	max-width: 960px;
+}
+h1.brandtitle{
+	font-size:48px;
+	text-transform: uppercase;
+	display: block;
+	border-bottom: 1px solid #000;
+	margin:0 0 24px;
+	font-weight:bold;
+	color:#000;
+	padding:0 0 24px;
+}
+h2.glh2{
+	.typocal(32px);
+	color:@gray-base;
+	margin:0 0 24px;
+	padding:0;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+h3.glh3{
+	font-weight: normal;
+	.typocal(24px);
+	margin: 0 0 24px;
+	padding: 0;
+	color: rgba(0,0,0,0.3);
+}
+section{
+	border-bottom: 1px solid #eee;
+	padding-bottom:32px;
+	margin-bottom:32px;
+	section{
+		border:none;
+		margin-bottom: 0;
+		&:last-child{
+			padding-bottom: 0;
+		}
+	}
+}
+
+.main-nav ul{
+	height:48px;
+	display:block;
+	list-style:none;
+	background:@primary;
+	li a{
+		float:left;
+		padding: 0 16px;
+		line-height: 48px;
+		text-transform: uppercase;
+		color: @primary-lighter;
+		font-weight:bold;
+	}
+}
+
+// color palette structure
+.color_palette {
+	clear:both;
+	overflow:hidden;
+
+	ul {
+		padding-top: 8px;
+		display: block;
+		overflow: hidden;
+	}
+	li {
+		float: left;
+		width: 12.5%;
+
+		span{
+			display: block;
+			height: 60px;
+			margin-right: 2px;
+			font-size: 10px;
+			text-transform: uppercase;
+			color: #FFF;
+			padding-top: 8px;
+			text-align: center;
+		}
+		i{
+			font-style: normal;
+			display: block;
+			font-size: 12px;
+			padding-top: 2px;
+			font-weight: bold;
+		}
+	}
+	li span.root {
+		height: 80px;
+		font-weight: bold;
+		font-size: 12px;
+		padding-top: 20px;
+		margin-top: -10px;
+		i{
+			font-size: 14px;
+		}
+	}
+	&.color_scale_palette li{
+		width: 11%
+	}
+}
+.btn_group {
+	margin: -16px -8px 24px;
+	li{
+		padding: 8px;
+		overflow: hidden;
+		p{
+			margin:0 16px 0 0;
+			padding: 0;
+			float: left;
+		}
+	}
+	li.btngrp_subtitle{
+		font-weight: bold;
+		padding-top:24px;
+	}
+	p{padding:0 0 24px;margin: 0;}
+	a.bdradius{
+		border-radius: 40px;
+	}
+	&.grd li{
+		width: 50%;
+		float: left;
+	}
+}
+.generate_el(~"gray");
+.generate_scalecolor_palette(~"gray");
+.generate_el(~"primary");
+.generate_el(~"success");
+.generate_el(~"secondary");
+.generate_el(~"info");
+.generate_el(~"warning");
+.generate_el(~"danger");
+.generate_el(~"adcolor1");
+.generate_el(~"adcolor2");
+.generate_el(~"adcolor3");
+
+
+  </style>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+      $.cssHooks.backgroundColor = {
+        get: function(elem) {
+            if (elem.currentStyle)
+                var bg = elem.currentStyle["background-color"];
+            else if (window.getComputedStyle)
+                var bg = document.defaultView.getComputedStyle(elem,
+                    null).getPropertyValue("background-color");
+            if (bg.search("rgb") == -1)
+                return bg;
+            else {
+                bg = bg.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                function hex(x) {
+                    return ("0" + parseInt(x).toString(16)).slice(-2);
+                }
+                return "#" + hex(bg[1]) + hex(bg[2]) + hex(bg[3]);
+            }
+        }
+    }
+  
+    $(function() {
+        // alert( $(".color_palette span.color_grid").css("backgroundColor"));
+      	$(".color_palette li span").each(function(){
+          	if(!$(this).hasClass('grad')){
+        			var hexcode = $(this).css("backgroundColor");
+          		$(this).append("<i>" + hexcode + "</i>");
+            }
+        });
+    });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="brandtitle">UI Style Guide</h1>
+      <section class="section">
+        <h2 class="glh2">Color Pallete</h2>
+        <div class="color_palette">
+          <ul class="gray-palette">
+            <li><span class="color_grid lightest">Lightest</span></li>
+            <li><span class="lighter">Lighter</span></li>
+            <li><span class="light">Light</span></li>
+            <li><span class="root">Gray</span></li>
+            <li><span class="dark">Dark</span></li>
+            <li><span class="darker">Darker</span></li>
+            <li><span class="overlay">Overlay</span></li>
+            <li><span class="grad">Gradient</span></li>
+          </ul>
+          <ul class="primary-palette">
+            <li><span class="lightest">Lightest</span></li>
+            <li><span class="lighter">Lighter</span></li>
+            <li><span class="light">Light</span></li>
+            <li><span class="root">Primary</span></li>
+            <li><span class="dark">Dark</span></li>
+            <li><span class="darker">Darker</span></li>
+            <li><span class="overlay">Overlay</span></li>
+            <li><span class="grad">Gradient</span></li>
+          </ul>
+          <ul class="secondary-palette">
+            <li><span class="lightest">Lightest</span></li>
+            <li><span class="lighter">Lighter</span></li>
+            <li><span class="light">Light</span></li>
+            <li><span class="root">Secondary</span></li>
+            <li><span class="dark">Dark</span></li>
+            <li><span class="darker">Darker</span></li>
+            <li><span class="overlay">Overlay</span></li>
+            <li><span class="grad">Gradient</span></li>
+          </ul>
+          <ul class="info-palette">
+            <li><span class="lightest">Lightest</span></li>
+            <li><span class="lighter">Lighter</span></li>
+            <li><span class="light">Light</span></li>
+            <li><span class="root">Info</span></li>
+            <li><span class="dark">Dark</span></li>
+            <li><span class="darker">Darker</span></li>
+            <li><span class="overlay">Overlay</span></li>
+            <li><span class="grad">Gradient</span></li>
+          </ul>
+          <ul class="success-palette">
+            <li><span class="lightest">Lightest</span></li>
+            <li><span class="lighter">Lighter</span></li>
+            <li><span class="light">Light</span></li>
+            <li><span class="root">Success</span></li>
+            <li><span class="dark">Dark</span></li>
+            <li><span class="darker">Darker</span></li>
+            <li><span class="overlay">Overlay</span></li>
+            <li><span class="grad">Gradient</span></li>
+          </ul>
+          <ul class="warning-palette">
+            <li><span class="lightest">Lightest</span></li>
+            <li><span class="lighter">Lighter</span></li>
+            <li><span class="light">Light</span></li>
+            <li><span class="root">Warning</span></li>
+            <li><span class="dark">Dark</span></li>
+            <li><span class="darker">Darker</span></li>
+            <li><span class="overlay">Overlay</span></li>
+            <li><span class="grad">Gradient</span></li>
+          </ul>
+          <ul class="danger-palette">
+            <li><span class="lightest">Lightest</span></li>
+            <li><span class="lighter">Lighter</span></li>
+            <li><span class="light">Light</span></li>
+            <li><span class="root">Danger</span></li>
+            <li><span class="dark">Dark</span></li>
+            <li><span class="darker">Darker</span></li>
+            <li><span class="overlay">Overlay</span></li>
+            <li><span class="grad">Gradient</span></li>
+          </ul>
+          <h3>Additional colors</h3>
+          <ul class="adcolor1-palette">
+            <li><span class="lightest">Lightest</span></li>
+            <li><span class="lighter">Lighter</span></li>
+            <li><span class="light">Light</span></li>
+            <li><span class="root">Indigo</span></li>
+            <li><span class="dark">Dark</span></li>
+            <li><span class="darker">Darker</span></li>
+            <li><span class="overlay">Overlay</span></li>
+            <li><span class="grad">Gradient</span></li>
+          </ul>
+          <ul class="adcolor2-palette">
+            <li><span class="lightest">Lightest</span></li>
+            <li><span class="lighter">Lighter</span></li>
+            <li><span class="light">Light</span></li>
+            <li><span class="root">Pink</span></li>
+            <li><span class="dark">Dark</span></li>
+            <li><span class="darker">Darker</span></li>
+            <li><span class="overlay">Overlay</span></li>
+            <li><span class="grad">Gradient</span></li>
+          </ul>
+          <ul class="adcolor3-palette">
+            <li><span class="lightest">Lightest</span></li>
+            <li><span class="lighter">Lighter</span></li>
+            <li><span class="light">Light</span></li>
+            <li><span class="root">Cyan</span></li>
+            <li><span class="dark">Dark</span></li>
+            <li><span class="darker">Darker</span></li>
+            <li><span class="overlay">Overlay</span></li>
+            <li><span class="grad">Gradient</span></li>
+          </ul>
+        </div>
+        <div class="color_palette color_scale_palette">
+          <h3>Grayscale Palette</h3>
+          <ul class="gray_scale_palette">
+            <li><span class="_100">100</span></li>
+            <li><span class="_200">200</span></li>
+            <li><span class="_300">300</span></li>
+            <li><span class="_400">400</span></li>
+            <li><span class="_500">500</span></li>
+            <li><span class="_600">600</span></li>
+            <li><span class="_700">700</span></li>
+            <li><span class="_800">800</span></li>
+            <li><span class="_900">900</span></li>
+          </ul>
+        </div>
+      </section>
+      <section>
+        <h2 class="glh2">Buttons</h2>
+        <div class="buttons">
+          <ul class="btn_group clearfix">
+            <li>
+              <p><button class="btn btn-lg btn-default"><span class="btn-text">Large Button</span></button></p>
+              <p><button class="btn btn-default"><span class="btn-text">Default Button</span></button></p>
+              <p><button class="btn btn-sm btn-default"><span class="btn-text">Small Button</span></button></p>
+              <p><button class="btn btn-xs btn-default"><span class="btn-text">Extra-small Button</span></button></p>
+              <p><button class="btn btn-default disabled"><span class="btn-text">Disabled</span></button></p>
+            </li>
+            <li class="btngrp_subtitle"><p>Primary button</p></li>
+            <li>
+              <p><button class="btn btn-lg btn-primary"><span class="btn-text">Large Button</span></button></p>
+              <p><button class="btn btn-primary"><span class="btn-text">Default Button</span></button></p>
+              <p><button class="btn btn-sm btn-primary"><span class="btn-text">Small Button</span></button></p>
+              <p><button class="btn btn-xs btn-primary"><span class="btn-text">Extra-small Button</span></button></p>
+              <p><button class="btn btn-primary disabled"><span class="btn-text">Disabled</span></button></p>
+            </li>
+            <li>
+              <p><button class="btn btn-lg btn-outline-primary"><span class="btn-text">Large Button</span></button></p>
+              <p><button class="btn btn-outline-primary"><span class="btn-text">Default Button</span></button></p>
+              <p><button class="btn btn-sm btn-outline-primary"><span class="btn-text">Small Button</span></button></p>
+              <p><button class="btn btn-xs btn-outline-primary"><span class="btn-text">Extra-small Button</span></button></p>
+              <p><button class="btn btn-outline-primary disabled"><span class="btn-text">Disabled</span></button></p>
+            </li>
+            <li class="btngrp_subtitle"><p>Secondary button</p></li>
+            <li>
+              <p><button class="btn btn-lg btn-info"><span class="btn-text">Large Button</span></button></p>
+              <p><button class="btn btn-info"><span class="btn-text">Default Button</span></button></p>
+              <p><button class="btn btn-sm btn-info"><span class="btn-text">Small Button</span></button></p>
+              <p><button class="btn btn-xs btn-info"><span class="btn-text">Extra-small Button</span></button></p>
+              <p><button class="btn btn-info disabled"><span class="btn-text">Disabled</span></button></p>
+            </li>
+            <li>
+              <p><button class="btn btn-lg btn-outline-info"><span class="btn-text">Large Button</span></button></p>
+              <p><button class="btn btn-outline-info"><span class="btn-text">Default Button</span></button></p>
+              <p><button class="btn btn-sm btn-outline-info"><span class="btn-text">Small Button</span></button></p>
+              <p><button class="btn btn-xs btn-outline-info"><span class="btn-text">Extra-small Button</span></button></p>
+              <p><button class="btn btn-outline-info disabled"><span class="btn-text">Disabled</span></button></p>
+            </li>
+            <li class="btngrp_subtitle"><p>Success button</p></li>
+            <li>
+              <p><button class="btn btn-lg btn-success"><span class="btn-text">Large Button</span></button></p>
+              <p><button class="btn btn-success"><span class="btn-text">Default Button</span></button></p>
+              <p><button class="btn btn-sm btn-success"><span class="btn-text">Small Button</span></button></p>
+              <p><button class="btn btn-xs btn-success"><span class="btn-text">Extra-small Button</span></button></p>
+              <p><button class="btn btn-success disabled"><span class="btn-text">Disabled</span></button></p>
+            </li>
+            <li>
+              <p><button class="btn btn-lg btn-outline-success"><span class="btn-text">Large Button</span></button></p>
+              <p><button class="btn btn-outline-success"><span class="btn-text">Default Button</span></button></p>
+              <p><button class="btn btn-sm btn-outline-success"><span class="btn-text">Small Button</span></button></p>
+              <p><button class="btn btn-xs btn-outline-success"><span class="btn-text">Extra-small Button</span></button></p>
+              <p><button class="btn btn-outline-success disabled"><span class="btn-text">Disabled</span></button></p>
+            </li>
+            <li class="btngrp_subtitle"><p>Warning button</p></li>
+            <li>
+              <p><button class="btn btn-lg btn-warning"><span class="btn-text">Large Button</span></button></p>
+              <p><button class="btn btn-warning"><span class="btn-text">Default Button</span></button></p>
+              <p><button class="btn btn-sm btn-warning"><span class="btn-text">Small Button</span></button></p>
+              <p><button class="btn btn-xs btn-warning"><span class="btn-text">Extra-small Button</span></button></p>
+              <p><button class="btn btn-warning disabled"><span class="btn-text">Disabled</span></button></p>
+            </li>
+            <li>
+              <p><button class="btn btn-lg btn-outline-warning"><span class="btn-text">Large Button</span></button></p>
+              <p><button class="btn btn-outline-warning"><span class="btn-text">Default Button</span></button></p>
+              <p><button class="btn btn-sm btn-outline-warning"><span class="btn-text">Small Button</span></button></p>
+              <p><button class="btn btn-xs btn-outline-warning"><span class="btn-text">Extra-small Button</span></button></p>
+              <p><button class="btn btn-outline-warning disabled"><span class="btn-text">Disabled</span></button></p>
+            </li>
+            <li class="btngrp_subtitle"><p>Danger button</p></li>
+            <li>
+              <p><button class="btn btn-lg btn-danger"><span class="btn-text">Large Button</span></button></p>
+              <p><button class="btn btn-danger"><span class="btn-text">Default Button</span></button></p>
+              <p><button class="btn btn-sm btn-danger"><span class="btn-text">Small Button</span></button></p>
+              <p><button class="btn btn-xs btn-danger"><span class="btn-text">Extra-small Button</span></button></p>
+              <p><button class="btn btn-danger disabled"><span class="btn-text">Disabled</span></button></p>
+            </li>
+            <li>
+              <p><button class="btn btn-lg btn-outline-danger"><span class="btn-text">Large Button</span></button></p>
+              <p><button class="btn btn-outline-danger"><span class="btn-text">Default Button</span></button></p>
+              <p><button class="btn btn-sm btn-outline-danger"><span class="btn-text">Small Button</span></button></p>
+              <p><button class="btn btn-xs btn-outline-danger"><span class="btn-text">Extra-small Button</span></button></p>
+              <p><button class="btn btn-outline-danger disabled"><span class="btn-text">Disabled</span></button></p>
+            </li>
+          </ul>
+          <section>
+            <h3 class="glh3">circle</h3>
+            <ul class="btn_group clearfix">
+              <li>
+                <p><button class="btn btn-circle btn-lg btn-default"><span class="btn-text">Large Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-default"><span class="btn-text">Default Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-sm btn-default"><span class="btn-text">Small Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-xs btn-default"><span class="btn-text">Extra-small Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-default disabled"><span class="btn-text">Disabled</span><span class="btn-ripple"></span></button></p>
+              </li>
+              <li>
+                <p><button class="btn btn-circle btn-lg btn-primary"><span class="btn-text">Large Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-primary"><span class="btn-text">Default Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-sm btn-primary"><span class="btn-text">Small Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-xs btn-primary"><span class="btn-text">Extra-small Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-primary disabled"><span class="btn-text">Disabled</span><span class="btn-ripple"></span></button></p>
+              </li>
+              <li>
+                <p><button class="btn btn-circle btn-lg btn-info"><span class="btn-text">Large Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-info"><span class="btn-text">Default Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-sm btn-info"><span class="btn-text">Small Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-xs btn-info"><span class="btn-text">Extra-small Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-info disabled"><span class="btn-text">Disabled</span><span class="btn-ripple"></span></button></p>
+              </li>
+              <li>
+                <p><button class="btn btn-circle btn-lg btn-success"><span class="btn-text">Large Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-success"><span class="btn-text">Default Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-sm btn-success"><span class="btn-text">Small Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-xs btn-success"><span class="btn-text">Extra-small Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-success disabled"><span class="btn-text">Disabled</span><span class="btn-ripple"></span></button></p>
+              </li>
+              <li>
+                <p><button class="btn btn-circle btn-lg btn-warning"><span class="btn-text">Large Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-warning"><span class="btn-text">Default Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-sm btn-warning"><span class="btn-text">Small Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-xs btn-warning"><span class="btn-text">Extra-small Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-warning disabled"><span class="btn-text">Disabled</span><span class="btn-ripple"></span></button></p>
+              </li>
+              <li>
+                <p><button class="btn btn-circle btn-lg btn-danger"><span class="btn-text">Large Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-danger"><span class="btn-text">Default Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-sm btn-danger"><span class="btn-text">Small Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-xs btn-danger"><span class="btn-text">Extra-small Button</span><span class="btn-ripple"></span></button></p>
+                <p><button class="btn btn-circle btn-danger disabled"><span class="btn-text">Disabled</span><span class="btn-ripple"></span></button></p>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h3 class="glh3">gradient</h3>
+            <ul class="btn_group grd clearfix">
+              <li>
+                <p>
+                  <button class="btn btn-grad btn-default">
+                    <span class="btn-text">Gradient Button</span>
+                    <span class="btn-ripple"></span>
+                  </button>
+                </p>
+                <p>
+                  <button class="btn btn-grad btn-circle btn-default">
+                    <span class="btn-text">Gradient Button</span>
+                    <span class="btn-ripple"></span>
+                  </button>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <button class="btn btn-grad btn-primary">
+                    <span class="btn-text">Gradient Button</span>
+                    <span class="btn-ripple"></span>
+                  </button>
+                </p>
+                <p>
+                  <button class="btn btn-grad btn-circle btn-primary">
+                    <span class="btn-text">Gradient Button</span>
+                    <span class="btn-ripple"></span>
+                  </button>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <button class="btn btn-grad btn-info">
+                    <span class="btn-text">Gradient Button</span>
+                    <span class="btn-ripple"></span>
+                  </button>
+                </p>
+                <p>
+                  <button class="btn btn-grad btn-circle btn-info">
+                    <span class="btn-text">Gradient Button</span>
+                    <span class="btn-ripple"></span>
+                  </button>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <button class="btn btn-grad btn-success">
+                    <span class="btn-text">Gradient Button</span>
+                    <span class="btn-ripple"></span>
+                  </button>
+                </p>
+                <p>
+                  <button class="btn btn-grad btn-circle btn-success">
+                    <span class="btn-text">Gradient Button</span>
+                    <span class="btn-ripple"></span>
+                  </button>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <button class="btn btn-grad btn-warning">
+                    <span class="btn-text">Gradient Button</span>
+                    <span class="btn-ripple"></span>
+                  </button>
+                </p>
+                <p>
+                  <button class="btn btn-grad btn-circle btn-warning">
+                    <span class="btn-text">Gradient Button</span>
+                    <span class="btn-ripple"></span>
+                  </button>
+                </p>
+              </li>
+              <li>
+                <p>
+                  <button class="btn btn-grad btn-danger">
+                    <span class="btn-text">Gradient Button</span>
+                    <span class="btn-ripple"></span>
+                  </button>
+                </p>
+                <p>
+                  <button class="btn btn-grad btn-circle btn-danger">
+                    <span class="btn-text">Gradient Button</span>
+                    <span class="btn-ripple"></span>
+                  </button>
+                </p>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
